@@ -1,4 +1,4 @@
-name: SonarCloud
+name: Build, check and deploy  to github Packages
 on:
   push:
     branches:
@@ -10,6 +10,11 @@ jobs:
     name: Build, analyze and deploy it
     runs-on: ubuntu-latest
     steps:
+      - name: BingoBongo
+        run: |
+          ls -R /home/runner
+      - run: echo "${{ github.repository_owner }}_${{ github.event.repository.name }}"
+
       - uses: actions/checkout@v3
         with:
           fetch-depth: 0  # Shallow clones should be disabled for a better relevancy of analysis
@@ -30,19 +35,15 @@ jobs:
           path: ~/.m2
           key: ${{ runner.os }}-m2-${{ hashFiles('**/pom.xml') }}
           restore-keys: ${{ runner.os }}-m2
-      - name: dfojdfjkdjfkdkdkd
+      - name: Build Settings file 
         uses: s4u/maven-settings-action@v2.8.0
         with:
           servers: '[{"id": "github", "username": "Pixomia", "password": "${{ secrets.GITHUB_TOKEN }}"}]'
-      - name: BingoBongo
-        run: |
-          ls -R /home/runner
-      - run: echo "🍏 This job's status is ${{ job.status }}."
       - name: Build and analyze
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
           SONAR_TOKEN: ${{ secrets.SONAR_TOKEN }}
-        run: mvn -B verify org.sonarsource.scanner.maven:sonar-maven-plugin:sonar -Dsonar.projectKey=Pixomia_pcloud-connector
+        run: mvn -B verify org.sonarsource.scanner.maven:sonar-maven-plugin:sonar -Dsonar.projectKey=${{ github.repository_owner }}_${{ github.event.repository.name }}
       - name: Upload artifacts for subsequent review
         uses: actions/upload-artifact@master
         with:
@@ -50,7 +51,7 @@ jobs:
          path: |
           target/site
           target/dependency-check-report.html
-      - name: daaaaaaaaaaaaaa
+      - name: Build Settings file part two
         uses: s4u/maven-settings-action@v2.8.0
         with:
           servers: '[{"id": "githubdep", "username": "Pixomia", "password": "${{ secrets.GITHUB_TOKEN }}"}]'
