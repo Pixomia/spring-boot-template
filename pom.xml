@@ -7,13 +7,14 @@
 		<groupId>org.springframework.boot</groupId>
 		<artifactId>spring-boot-starter-parent</artifactId>
 		<version>3.2.0</version>
-		<relativePath /> <!-- lookup parent from repository -->
+		<relativePath />
 	</parent>
 	<groupId>com.github.pixomia</groupId>
-	<artifactId>gittertester</artifactId>
+	<artifactId>spring-boot-template</artifactId>
 	<version>0.0.1-SNAPSHOT</version>
-	<name>gittertester</name>
-	<description>Demo project for Spring Boot</description>
+	<name>spring-boot-template</name>
+	<description>This is an basis Example of an Spring Boot app with running
+		Github Action </description>
 	<properties>
 		<java.version>21</java.version>
 		<sonar.organization>pixomia-sonarcloud</sonar.organization>
@@ -37,7 +38,7 @@
 		<repository>
 			<id>github</id>
 			<name>Remote Maven Repo for gittertester</name>
-			<url>https://maven.pkg.github.com/pixomia/gittertester</url>
+			<url>https://maven.pkg.github.com/pixomia/spring-boot-template</url>
 		</repository>
 	</distributionManagement>
 	<repositories>

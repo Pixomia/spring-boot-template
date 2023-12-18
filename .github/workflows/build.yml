@@ -10,11 +10,6 @@ jobs:
     name: Build, analyze and deploy it
     runs-on: ubuntu-latest
     steps:
-      - name: BingoBongo
-        run: |
-          ls -R /home/runner
-      - run: echo "${{ github.repository_owner }}_${{ github.event.repository.name }}"
-
       - uses: actions/checkout@v3
         with:
           fetch-depth: 0  # Shallow clones should be disabled for a better relevancy of analysis
@@ -38,7 +33,7 @@ jobs:
       - name: Build Settings file 
         uses: s4u/maven-settings-action@v2.8.0
         with:
-          servers: '[{"id": "github", "username": "Pixomia", "password": "${{ secrets.GITHUB_TOKEN }}"}]'
+          servers: '[{"id": "github", "username": "${{ github.repository_owner }}", "password": "${{ secrets.GITHUB_TOKEN }}"}]'
       - name: Build and analyze
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
@@ -54,7 +49,7 @@ jobs:
       - name: Build Settings file part two
         uses: s4u/maven-settings-action@v2.8.0
         with:
-          servers: '[{"id": "githubdep", "username": "Pixomia", "password": "${{ secrets.GITHUB_TOKEN }}"}]'
+          servers: '[{"id": "githubdep", "username": "${{ github.repository_owner }}", "password": "${{ secrets.GITHUB_TOKEN }}"}]'
       - name: deploy it to github repo
         run: mvn -B deploy
         env:
