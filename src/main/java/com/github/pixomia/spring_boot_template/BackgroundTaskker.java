@@ -1,4 +1,4 @@
-package com.github.pixomia.gittertester;
+package com.github.pixomia.spring_boot_template;
 
 import org.springframework.scheduling.annotation.Scheduled;
 import org.springframework.stereotype.Service;

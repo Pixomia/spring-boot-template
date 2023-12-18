@@ -1,4 +1,4 @@
-package com.github.pixomia.gittertester;
+package com.github.pixomia.spring_boot_template;
 
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
@@ -8,10 +8,10 @@ import org.springframework.scheduling.annotation.EnableScheduling;
 @SpringBootApplication
 @Configuration
 @EnableScheduling
-public class GittertesterApplication {
+public class SpringBootTemplateApplication {
 
     public static void main(final String[] args) {
-	SpringApplication.run(GittertesterApplication.class, args);
+	SpringApplication.run(SpringBootTemplateApplication.class, args);
     }
 
 }

@@ -1,10 +1,10 @@
-package com.github.pixomia.gittertester;
+package com.github.pixomia.spring_boot_template;
 
 import org.junit.jupiter.api.Test;
 import org.springframework.boot.test.context.SpringBootTest;
 
 @SpringBootTest
-class GittertesterApplicationTests {
+class SpringBootTemplateApplicationTests {
 
 	@Test
 	void contextLoads() {
